@@ -1,0 +1,4 @@
+scrapy
+PyGithub
+oci
+nltk
