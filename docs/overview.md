@@ -36,5 +36,7 @@ In this video, you will find how to use the new GenAI Service with Python to cre
 This is an overview of using OCI GenAI Services through the OCI Console or together with Oracle JET:
 
 [App Pattern: OCI Generative AI JET UI](https://www.youtube.com/watch?v=hpRoQ93YeaQ&list=PLPIzp-E1msraY9To-BB-vVzPsK08s4tQD&index=1)
+
 [Medium Article](https://medium.com/oracledevs/get-started-with-oracle-generative-ai-using-oracle-jet-cef23bfda5c7)
+
 [LinkedIn Article](https://www.linkedin.com/pulse/oracle-jet-generative-ai-john-brock-qng9c/)
