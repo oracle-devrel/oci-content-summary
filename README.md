@@ -22,6 +22,21 @@ LLM Hyperparams used:
 - Conda
 - [OCI SDK](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm)
 
+### OCI SDK Installation Instructions
+
+Follow these links below to generate a config file and a key pair in your ~/.oci directory:
+
+[SDK Config](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm)
+[API Signing Key](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm)
+[SDK CLI Installation](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm#configfile)
+
+After completion, you should have following 2 things in your ~/.oci directory:
+
+- A config file(where key file point to private key:key_file=~/.oci/oci_api_key.pem)
+- A key pair named oci_api_key.pem and oci_api_key_public.pem
+
+Now make sure you change the reference of key file in config file (where key file point to private key:key_file=/YOUR_DIR_TO_KEY_FILE/oci_api_key.pem)
+
 ## Installation
 
 ```sh
