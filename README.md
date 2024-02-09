@@ -25,9 +25,9 @@ Check out the demo [here](https://www.youtube.com/watch?v=qiUjqxyqY0I&list=PLPIz
 ### 0. Prerequisites and setup
 
 - Oracle Cloud Infrastructure (OCI) Account
-- Oracle Cloud Infrastructure (OCI) Generative AI Service - Getting Started with Generative AI
-- Oracle Cloud Infrastructure Documentation - Generative AI
-- Oracle Cloud Infrastructure (OCI) Generative AI Service SDK - Oracle Cloud Infrastructure Python SDK
+- [Oracle Cloud Infrastructure (OCI) Generative AI Service - Getting Started with Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/getting-started.htm)
+- [Oracle Cloud Infrastructure Documentation - Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/home.htm)
+- [Oracle Cloud Infrastructure (OCI) Generative AI Service SDK - Oracle Cloud Infrastructure Python SDK](https://pypi.org/project/oci/)
 - [Python 3.10](https://www.python.org/downloads/release/python-3100/)
 - [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 - [OCI SDK](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm)
