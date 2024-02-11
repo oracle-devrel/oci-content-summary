@@ -56,7 +56,7 @@ def main():
         summary = run_summarizer(new_text)
         print(json.loads(str(summary))['summary'])
 
-        with open('outputs/output_{}.txt'.format(iterator), 'w') as file:
+        with open('outputs/output_{}.txt'.format(iterator), 'w', encoding='utf-8') as file:
             file.write(json.loads(str(summary))['summary'])
         file.close()
         
