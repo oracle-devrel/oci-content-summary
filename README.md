@@ -84,6 +84,10 @@ Note that the described resources in this annex are unofficial, as LinkedIn does
 2. Request access to the Sign In With LinkedIn API product. This is a self-serve product that will be provisioned immediately to your application.
 3. Generate a 3-legged access token using the Developer Portal [token generator tool](https://www.linkedin.com/developers/tools/oauth/token-generator), selecting the r_liteprofile scope.
 
+## Physical Architecture
+
+![arch](./img/arch.PNG)
+
 ## Notes/Issues
 
 None at this moment.
