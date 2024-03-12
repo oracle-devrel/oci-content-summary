@@ -1,0 +1,53 @@
+Language allows you to perform sophisticated text analysis at scale. Using the pretrained and custom models, you can process unstructured text to extract insights without data science expertise. Pretrained models include sentiment analysis, key phrase extraction, text classification, and named entity recognition. You can also train custom models for named entity recognition and text classification with domain specific datasets. Additionally, you can translate text across numerous languages.
+
+Language Overview
+
+Language is server-less and multi-tenant service that's accessible using REST API calls. With pretrained and custom models, you can process unstructured text and extract insights without data science expertise.
+
+The Language pretrained models are frequently retrained and monitored to provide you with the best results.
+
+You can automate sophisticated text analysis at scale without any machine learning expertise.
+
+The Language service contains these pretrained language processing capabilities:
+
+Language Detection
+    Detects languages based on the provided text, and includes a confidence score.
+Text Classification
+
+    Identifies the document category and subcategory that the text belongs to.
+Named Entity Recognition
+
+    Identifies common entities, people, places, locations, email, and so on.
+Key Phrase Extraction
+
+    Extracts an important set of phrases from a block of text.
+Sentiment Analysis
+
+    Identifies aspects from the provided text and classifies each into positive, negative, or neutral polarity.
+Text Translation
+
+    Translates text into the language of your choice.
+Personal Identifiable Information
+
+    Personal Identifiable Information (PII) detection identifies, classifies, and de-identifies private information in unstructured text
+
+Creating custom models can be done using Named Entity Recognition and Text Classification.
+Ways to Access Language
+
+You access Language using the Console, REST API, SDKs, or CLI.
+
+Use any of the following options, based on your preference and its suitability for the task you want to complete:
+
+    The OCI Console is an easy-to-use, browser-based interface. To access the Console, you must use a supported browser.
+    The REST APIs provide the most functionality, but require programming expertise. API reference and endpoints provide endpoint details and links to the available API reference documents including the Artificial Intelligence Services REST API.
+    OCI provides SDKs that interact with Language without the need to create a framework.
+    The CLI provides both quick access and full functionality without the need for programming.
+
+Regions and Availability Domains
+
+OCI services are hosted in regions and availability domains. A region 
+is a localized geographic area, and an availability domain 
+
+is one or more data centers located in that region.
+
+Language is hosted in OCI commercial and government regions.
