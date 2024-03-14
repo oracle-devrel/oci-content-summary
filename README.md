@@ -6,9 +6,9 @@
 
 ## Introduction
 
-This project gets the 25 trending projects from a day (from [here](https://github.com/trending)), reads their README.md files, and summarizes them in a way which is ready for social media.
+This project retrieves the 25 trending projects from a day (from [here](https://github.com/trending)), reads their README.md files, and summarizes them in a way which is ready for social media.
 
-Companies can use this in their content generation pipeline strategies, or individuals trying to grow their social media following with organic and up-to-date (fresh everyday) content!
+Companies can use this in their content generation pipeline strategies, or individuals can use it when trying to grow their social media following with organic and up-to-date content!
 
 LLM Hyperparams used:
 
@@ -24,7 +24,7 @@ Check out the demo [here](https://www.youtube.com/watch?v=qiUjqxyqY0I&list=PLPIz
 
 ### 0. Prerequisites and setup
 
-- Oracle Cloud Infrastructure (OCI) Account
+- Oracle Cloud Infrastructure (OCI) Account - [sign-up page](https://signup.cloud.oracle.com/)
 - [Oracle Cloud Infrastructure (OCI) Generative AI Service - Getting Started with Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/getting-started.htm)
 - [Oracle Cloud Infrastructure Documentation - Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/home.htm)
 - [Oracle Cloud Infrastructure (OCI) Generative AI Service SDK - Oracle Cloud Infrastructure Python SDK](https://pypi.org/project/oci/)
