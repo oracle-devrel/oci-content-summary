@@ -54,10 +54,10 @@ def main():
         else: new_text = new_text
         print('Text length: {}'.format(len(new_text)))
         summary = run_summarizer(new_text)
-        print(json.loads(str(summary))['summary'])
+        print(summary)
 
         with open('outputs/output_{}.txt'.format(iterator), 'w', encoding='utf-8') as file:
-            file.write(json.loads(str(summary))['summary'])
+            file.write(summary)
         file.close()
         
         iterator += 1
