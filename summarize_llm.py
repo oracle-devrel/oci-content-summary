@@ -37,8 +37,10 @@ def main(summary_txt: str = "") -> None:
 
 
     content = oci.generative_ai_inference.models.TextContent()
-    content.text = """You are an expert AI researcher. Generate an abstractive summary of the given Markdown contents.
-    Share an interesting insight to captivate attention. Here are the contents: {}""".format(summary_txt)
+    content.text = """You are an expert research. Generate an abstractive summary of the given Markdown contents, each corresponding to a GitHub readme file for a repository.
+    Share an interesting insight to captivate the reader's attention.
+    Do not add any comments other tthan the actual summary, e.g. avoid things like "here is the summary" and so on.
+    Here are the contents to summarize: {}""".format(summary_txt)
     message = oci.generative_ai_inference.models.Message()
     message.role = "USER"
     message.content = [content]
