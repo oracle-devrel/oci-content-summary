@@ -27,7 +27,7 @@ def preprocess_string(data: str) -> None:
     return string_decode
 
 #
-#The listed limit is 4096 for input + output. Meaning, you need to save some token space for  the LLM to output a response.
+#The listed limit is 128K for input + output..
 #https://docs.oracle.com/en-us/iaas/Content/generative-ai/limitations.htm
 
 def main():
