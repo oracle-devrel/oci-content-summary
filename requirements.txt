@@ -2,4 +2,3 @@ scrapy
 PyGithub
 oci
 nltk
-json

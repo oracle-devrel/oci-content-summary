@@ -42,7 +42,8 @@ def main(summary_txt: str = "") -> None:
 
 
     content = oci.generative_ai_inference.models.TextContent()
-    content.text = "Generate a teaser summary for this Markdown file. Share an interesting insight to captivate attention. Here is the file: {}".format(text_to_summarize)
+    content.text = """You are an expert AI researcher. Generate an abstractive summary of the given Markdown contents.
+    Share an interesting insight to captivate attention. Here are the contents: {}""".format(text_to_summarize)
     message = oci.generative_ai_inference.models.Message()
     message.role = "USER"
     message.content = [content]
