@@ -15,6 +15,8 @@
 
 import oci
 import yaml
+import json
+
 #import logging
 #logging.getLogger('oci').setLevel(logging.DEBUG)
 
@@ -31,33 +33,45 @@ def main(summary_txt: str = "") -> None:
     endpoint = "https://inference.generativeai.us-chicago-1.oci.oraclecloud.com"
 
     generative_ai_inference_client = oci.generative_ai_inference.GenerativeAiInferenceClient(config=config, service_endpoint=endpoint, retry_strategy=oci.retry.NoneRetryStrategy(), timeout=(10,240))
-    
-    # You can also load the summary text from a file, or as a parameter in main
-    #with open('files/summarize_data.txt', 'r') as file:
-    #    text_to_summarize = file.read()
+    chat_detail = oci.generative_ai_inference.models.ChatDetails()    
 
-    summarize_text_detail = oci.generative_ai_inference.models.SummarizeTextDetails()
-    summarize_text_detail.serving_mode = oci.generative_ai_inference.models.OnDemandServingMode(model_id="cohere.command")
-    summarize_text_detail.compartment_id = compartment_id
-    #summarize_text_detail.input = text_to_summarize
-    summarize_text_detail.input = summary_txt
-    summarize_text_detail.additional_command = "Generate a teaser summary for this Markdown file. Share an interesting insight to captivate attention."
-    summarize_text_detail.extractiveness = "AUTO" # HIGH, LOW
-    summarize_text_detail.format = "AUTO" # brackets, paragraph
-    summarize_text_detail.length = "LONG" # high, AUTO
-    summarize_text_detail.temperature = .25 # [0,1]
 
-    if "<compartment_ocid>" in compartment_id:
-        print("ERROR:Please update your compartment id in target python file")
-        quit()
+    content = oci.generative_ai_inference.models.TextContent()
+    content.text = """You are an expert research. Generate an abstractive summary of the given Markdown contents, each corresponding to a GitHub readme file for a repository.
+    Share an interesting insight to captivate the reader's attention.
+    Do not add any comments other tthan the actual summary, e.g. avoid things like "here is the summary" and so on.
+    Here are the contents to summarize: {}""".format(summary_txt)
+    message = oci.generative_ai_inference.models.Message()
+    message.role = "USER"
+    message.content = [content]
 
-    summarize_text_response = generative_ai_inference_client.summarize_text(summarize_text_detail)
+    llm_inference_request = oci.generative_ai_inference.models.GenericChatRequest()
+    llm_inference_request.api_format = oci.generative_ai_inference.models.BaseChatRequest.API_FORMAT_GENERIC
+    llm_inference_request.messages = [message]
 
-    # Print result
-    #print("**************************Summarize Texts Result**************************")
-    #print(summarize_text_response.data)
+    llm_inference_request.max_tokens = 550
+    llm_inference_request.temperature = 1.0
+    llm_inference_request.frequency_penalty = 0.0
+    llm_inference_request.top_p = 0.75
 
-    return summarize_text_response.data
+    # cohere.command-r-plus: ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceya7ozidbukxwtun4ocm4ngco2jukoaht5mygpgr6gq2lgq
+    # cohere.command for generation: ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceyafhwal37hxwylnpbcncidimbwteff4xha77n5xz4m7p6a
+    # new model - llama3: ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceyaycmwwnvu2gaqrffquofgmshlqzcdwpk727n4cykg34oa
+    chat_detail.serving_mode = oci.generative_ai_inference.models.OnDemandServingMode(model_id="ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceyaycmwwnvu2gaqrffquofgmshlqzcdwpk727n4cykg34oa")
+    chat_detail.chat_request = llm_inference_request
+    chat_detail.compartment_id = compartment_id
+    chat_response  = generative_ai_inference_client.chat(chat_detail)
+
+
+    data_dict = vars(chat_response)
+    print(data_dict)
+
+    json_result = json.loads(str(data_dict['data']))
+
+    text_result = json_result['chat_response']['choices'][0]['message']['content'][0]['text']
+    print(text_result)
+
+    return text_result
 
 
 if __name__ == '__main__':

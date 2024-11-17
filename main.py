@@ -27,7 +27,7 @@ def preprocess_string(data: str) -> None:
     return string_decode
 
 #
-#The listed limit is 4096 for input + output. Meaning, you need to save some token space for  the LLM to output a response.
+#The listed limit is 128K for input + output..
 #https://docs.oracle.com/en-us/iaas/Content/generative-ai/limitations.htm
 
 def main():
@@ -54,10 +54,10 @@ def main():
         else: new_text = new_text
         print('Text length: {}'.format(len(new_text)))
         summary = run_summarizer(new_text)
-        print(json.loads(str(summary))['summary'])
+        print(summary)
 
         with open('outputs/output_{}.txt'.format(iterator), 'w', encoding='utf-8') as file:
-            file.write(json.loads(str(summary))['summary'])
+            file.write(summary)
         file.close()
         
         iterator += 1
