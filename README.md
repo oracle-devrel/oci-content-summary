@@ -54,9 +54,27 @@ After completion, you should have following 2 things in your ~/.oci directory:
 
 Then, we're going to configure a new file, called `config.yaml` that contains this structure, which will allow you to authenticate to OCI and call the OCI GenAI summarization model, to summarize the content from each project's README files:
 
-```yml
-compartment_id: "ocid1.compartment.oc1..ocid"
-config_profile: "profile_name_in_your_oci_config"
+1. Copy `config_example.yaml` to `config.yaml`:
+
+```bash
+cp config_example.yaml config.yaml
+```
+
+2. Update the following values in your `config.yaml`:
+
+- `compartment_id`: Your OCI compartment OCID
+- `config_profile`: Your OCI CLI profile name (usually "DEFAULT")
+- `db_username`: Your database username (default is "ADMIN")
+- `db_password`: Your database user's password
+- `db_dsn`: Your database connection string, which includes:
+  - host: Your database hostname (e.g., "adb.us-ashburn-1.oraclecloud.com")
+  - service_name: Your database service name
+  - port: Database port (usually 1522)
+
+3. This is an example database connection string format:
+
+```yaml
+db_dsn: "(description= (retry_count=5)(retry_delay=2)(address=(protocol=tcps)(port=1522)(host=adb.region.oraclecloud.com))(connect_data=(service_name=your_db_name_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))"
 ```
 
 > **Note**: You can find your oci configuration in `~/.oci/config`. Make sure you have previously installed [OCI SDK in your computer](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
@@ -81,7 +99,7 @@ chmod a+x run.sh # if you don't have exec permissions initially for the .sh file
 ```sh
 scrapy runspider trending_spider.py # this will get trending repositories
 scrapy runspider info_spider.py # then, for each trending repository, it will extract info.
-python main.py # to process their README.md files as well, and runs a summarizer on top of it.
+python main.py # to process their README.md files as well, and runs a summarizer on top of it, and insert these into an autonomous database.
 ```
 
 ## Appendix: Getting Started with LinkedIn Poster
