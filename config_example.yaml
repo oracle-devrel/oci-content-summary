@@ -1,0 +1,14 @@
+# OCI Configuration
+compartment_id: "ocid1.compartment.oc1..example"  # Your OCI compartment OCID
+config_profile: "DEFAULT"  # Your OCI CLI profile name, usually "DEFAULT"
+
+# Database Configuration
+db_username: "ADMIN"  # Default admin username for Autonomous Database
+db_password: "MySecurePass123!"  # Replace with your actual database password
+db_wallet_location: "./wallet"  # Directory containing the wallet files
+db_wallet_password: "wallet_password"  # Default wallet password, change if you modified it
+
+# Database Connection String (DSN)
+# Use the TNS name from tnsnames.ora in your wallet directory
+# Example: dbname_high, dbname_low, or dbname_medium
+db_dsn: "dbname_high"  # Replace with your database's TNS name
