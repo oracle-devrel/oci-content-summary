@@ -1,0 +1,8 @@
+# OCI Configuration
+compartment_id: "ocid1.compartment.oc1..example"  # Your OCI compartment OCID
+config_profile: "DEFAULT"  # Your OCI CLI profile name, usually "DEFAULT"
+
+# Database Configuration
+db_username: "ADMIN"  # Default admin username for Autonomous Database
+db_password: "MySecurePass123!"  # Replace with your actual database password
+db_dsn: "dbname_high"  # Replace with your database's TNS name from tnsnames.ora

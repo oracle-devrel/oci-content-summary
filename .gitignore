@@ -167,3 +167,6 @@ config.yaml
 
 # remove output files that aren't the first one
 outputs/output_*
+
+
+wallet/*
