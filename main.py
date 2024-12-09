@@ -34,9 +34,7 @@ def main():
     db = DatabaseHandler(
         username=config['db_username'],
         password=config['db_password'],
-        dsn=config['db_dsn'],
-        wallet_location=config['db_wallet_location'],
-        wallet_password=config['db_wallet_password']
+        dsn=config['db_dsn']
     )
     db.connect()
 
