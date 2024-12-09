@@ -3,26 +3,22 @@ from datetime import datetime
 import os
 
 class DatabaseHandler:
-    def __init__(self, username, password, dsn, wallet_location, wallet_password):
+    def __init__(self, username, password, dsn):
         self.username = username
         self.password = password
         self.dsn = dsn
-        self.wallet_location = wallet_location
-        self.wallet_password = wallet_password
         self.connection = None
         
     def connect(self):
         try:
-            # Initialize Oracle Client library for thick mode with specific config directory
-            oracledb.init_oracle_client(config_dir=self.wallet_location, lib_dir=os.getenv("ORACLE_CLIENT_PATH", "C:\\oracle\\instantclient"))
+            # Initialize Oracle Client library for thick mode
+            oracledb.init_oracle_client()
             
-            # Configure the wallet location
+            # Connect using thick mode
             self.connection = oracledb.connect(
                 user=self.username,
                 password=self.password,
-                dsn=self.dsn,
-                wallet_location=self.wallet_location,
-                wallet_password=self.wallet_password
+                dsn=self.dsn
             )
             print("Successfully connected to Oracle Database using thick mode")
             self._create_table()
