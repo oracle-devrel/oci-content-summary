@@ -30,7 +30,7 @@ Check out the demo [here](https://www.youtube.com/watch?v=qiUjqxyqY0I&list=PLPIz
 
 ## Getting Started
 
-### 0. Prerequisites and setup
+### Prerequisites and setup
 
 - Oracle Cloud Infrastructure (OCI) Account - [sign-up page](https://signup.cloud.oracle.com/)
 - [Oracle Cloud Infrastructure (OCI) Generative AI Service - Getting Started with Generative AI](https://docs.oracle.com/en-us/iaas/Content/generative-ai/getting-started.htm)
@@ -39,6 +39,7 @@ Check out the demo [here](https://www.youtube.com/watch?v=qiUjqxyqY0I&list=PLPIz
 - [Python 3.10](https://www.python.org/downloads/release/python-3100/)
 - [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 - [OCI SDK](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm)
+- [Oracle Instant Client](https://www.oracle.com/database/technologies/instant-client/downloads.html)
 
 Follow these links below to generate a config file and a key pair in your ~/.oci directory:
 
@@ -52,22 +53,65 @@ After completion, you should have following 2 things in your ~/.oci directory:
 - A key pair named `oci_api_key.pem` and `oci_api_key_public.pem`
 - Now make sure you change the reference of key file in config file (where key file point to private key: `key_file=/YOUR_OCI_CONFIG_DIR/oci_api_key.pem`)
 
-Then, we're going to configure a new file, called `config.yaml` that contains this structure, which will allow you to authenticate to OCI and call the OCI GenAI summarization model, to summarize the content from each project's README files:
+### Database Setup
 
-```yml
-compartment_id: "ocid1.compartment.oc1..ocid"
-config_profile: "profile_name_in_your_oci_config"
+1. Install Oracle Instant Client in the default location:
+   - Windows: `C:/oracle/instantclient`
+   - Linux: `/opt/oracle/instantclient`
+   - macOS: `/opt/oracle/instantclient`
+
+2. Download your database wallet from Oracle Cloud Console:
+   - Go to Autonomous Database details
+   - Click "DB Connection"
+   - Click "Download Wallet"
+
+3. Extract the wallet files (like `tnsnames.ora`, `sqlnet.ora`, etc.) to your Oracle Instant Client's `network/admin` directory:
+   - Windows: `C:\oracle\instantclient/network/admin/`
+   - Linux: `/opt/oracle/instantclient/network/admin/`
+   - macOS: `/opt/oracle/instantclient/network/admin/`
+
+4. Add Oracle Instant Client to your system PATH:
+
+   Windows:
+   ```cmd
+   set PATH=C:\oracle\instantclient;%PATH%
+   ```
+
+   Linux/macOS:
+   ```bash
+   export PATH=/opt/oracle/instantclient:$PATH
+   export LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH
+   ```
+
+### Configuration
+
+Copy `config_example.yaml` to `config.yaml`:
+```bash
+cp config_example.yaml config.yaml
 ```
 
-> **Note**: You can find your oci configuration in `~/.oci/config`. Make sure you have previously installed [OCI SDK in your computer](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
+Update the following values in your `config.yaml`:
+```yaml
+compartment_id: "ocid1.compartment.oc1..example"  # Your OCI compartment OCID
+config_profile: "DEFAULT"  # Your OCI CLI profile name
 
-Finally, we install Python dependencies:
+# Database Configuration
+db_username: "ADMIN"  # Default admin username for Autonomous Database
+db_password: "dbpassword"  # Replace with your actual database password
+db_dsn: "dbname_high"  # Use the TNS name from tnsnames.ora in your wallet
+```
+
+> **Note**: You can find your OCI configuration in `~/.oci/config`. Make sure you have previously installed [OCI SDK in your computer](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm).
+
+Finally, install Python dependencies:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-## 1. Automatically running everything
+## Running the Application
+
+### 1. Automatically running everything
 
 You can run the bash script to generate all outputs in the `output/` dir:
 
@@ -76,7 +120,7 @@ chmod a+x run.sh # if you don't have exec permissions initially for the .sh file
 ./run.sh
 ```
 
-## 2. (Optional) Running each component step-by-step
+### 2. (Optional) Running each component step-by-step
 
 ```sh
 scrapy runspider trending_spider.py # this will get trending repositories
